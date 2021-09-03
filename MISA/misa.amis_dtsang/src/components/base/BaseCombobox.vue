@@ -94,7 +94,7 @@ export default {
       this.isShow = !this.isShow;
     },
 
-    /**-------------------------------------------------------------
+    /**
      * Hàm lấy tất cả các đơn vị
      * Author: DTSang(31/08)
      */
@@ -106,7 +106,7 @@ export default {
         console.log(this.departments);
       });
     },
-    /**-----------------------------------------------------------
+    /**
      * Hàm bắt sự kiện khi click chọn đơn vị
      * Author: DTSang(31/08)
      */
@@ -117,7 +117,7 @@ export default {
         this.keysearch = this.item.departmentName;
       }
     },
-    /**-----------------------------------------------------------------
+    /**
      * Hàm cập nhật dữ liệu khi value thay đổi
      * Author: DTSang(31/08)
      */
@@ -133,7 +133,7 @@ export default {
         this.keysearch = "";
       }
     },
-    /**---------------------------------------------------------------
+    /**
      * Hàm sử lí sự kiện tìm kiếm đơn vị
      * Author: DTsang(31/08)
      */
@@ -154,7 +154,7 @@ export default {
         this.isShow = true;
       }
     },
-    /**----------------------------------------------------------------------
+    /**
      * Hàm check event khi click ra bên ngoài combobox
      * Author: DTSang(31/08)
      */
@@ -173,88 +173,89 @@ export default {
 
 <style>
 .combobox {
-  align-items: center;
-  box-sizing: border-box;
-  position: relative;
-  width: 100%;
-}
-.show-combobox {
-  display: block !important;
-}
-.flex {
-  display: flex;
-  width: 100%;
-  height: 40px;
-}
-.combobox input {
-  height: 100%;
-  border: 1px solid #bbbbbb;
-  border-radius: 4px;
-  width: 100%;
-  outline: none;
-  padding-right: 40px;
-  padding-left: 10px;
-}
-.width-100 {
-  width: 100%;
-}
-.border-red {
-  border-color: red;
-}
-.combobox input:focus {
-  border-color: #2ca01c;
-}
-.btn-combobox {
-  background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -562px -357px;
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-  margin-left: 7px;
-  margin-top: 7px;
-}
-.combobox-icon {
-  margin-top: 1px;
-  width: 38px;
-  height: 38px;
-  border-color: #e0e0e0;
-  position: absolute;
-  right: 2px;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-.combobox-data {
-  display: none;
-  position: absolute;
-  top: 34px;
-  height: 10;
-  background: #fff;
-  width: 100%;
-  padding: 4px 0;
-  border: 1px solid #babec5;
-  border-radius: 4px;
-}
-.combobox-data table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.combobox-data table thead {
-  background: #f4f5f8;
-  font-weight: bolder;
-}
-.combobox-data table tr {
-  height: 32px;
-}
-.combobox-data table tbody tr {
-  text-align: center;
-  cursor: pointer;
-}
-.combobox-data table tbody tr:hover {
-  color: #35bf22;
-  background-color: #ebedf0;
-}
-.combobox-active {
-  color: #35bf22;
-  background-color: #ebedf0;
-}
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    height: 50%;
+  }
+  .show-combobox {
+    display: block !important;
+  }
+  .flex {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  .combobox input {
+    height: 100%;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px;
+    width: 100%;
+    outline: none;
+    padding-right: 40px;
+    padding-left: 10px;
+  }
+  .width-100 {
+    width: 100%;
+  }
+  .border-red {
+    border-color: red;
+  }
+  .combobox input:focus {
+    border-color: #2ca01c;
+  }
+  .btn-combobox {
+    background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -562px -358px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    margin-left: 7px;
+    margin-top: 7px;
+  }
+  .combobox-icon {
+    margin-top: 1px;
+    width: 38px;
+    height: 38px;
+    border-color: #e0e0e0;
+    position: absolute;
+    right: 2px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  .combobox-data {
+    display: none;
+    position: absolute;
+    top: 34px;
+    height: 10;
+    background: #fff;
+    width: 100%;
+    padding: 4px 0;
+    border: 1px solid #babec5;
+    border-radius: 4px;
+  }
+  .combobox-data table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .combobox-data table thead {
+    background: #f4f5f8;
+    font-weight: bolder;
+  }
+  .combobox-data table tr {
+    height: 32px;
+  }
+  .combobox-data table tbody tr {
+    text-align: center;
+    cursor: pointer;
+  }
+  .combobox-data table tbody tr:hover {
+    color: #35bf22;
+    background-color: #ebedf0;
+  }
+  .combobox-active {
+    color: #35bf22;
+    background-color: #ebedf0;
+  }
 </style>

@@ -10,8 +10,18 @@ using System.Threading.Tasks;
 
 namespace MISA.AMIS.Infrastructure.Repositories
 {
+
     public class EmployeeRepository : BaseRepository<Employee>, IEmployeeRepository
     {
+
+        /// <summary>
+        /// Phương thức phân trang và filter 
+        /// </summary>
+        /// <param name="keySearch"></param>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <returns>Trả về obj</returns>
+        /// CreatedBy: DTSang(28/08)
         public object GetEmployeePaging(string keySearch, int pageIndex, int pageSize)
         {
             var keywork = keySearch == null ? string.Empty : keySearch;
@@ -37,6 +47,11 @@ namespace MISA.AMIS.Infrastructure.Repositories
             return result;
         }
 
+        /// <summary>
+        /// Phương thức lấy mã nhân viên mới
+        /// </summary>
+        /// <returns>Mã nhân viên mới</returns>
+        /// CreatedBy: DTSang(28/08)
         public string GetNewEmployeeCode()
         {
             var sqlcommand = "Proc_GetNewemployeeCode";

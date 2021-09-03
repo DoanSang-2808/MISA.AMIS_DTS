@@ -36,6 +36,7 @@ namespace MISA.AMIS.API.Controllers
         /// Phương thức lấy mã nhân viên mới
         /// </summary>
         /// <returns></returns>
+        /// CreatedBy: DTSang(28/08)
         [HttpGet]
         [Route("NewEmployeeCode")]
         public IActionResult GetNewEmployeeCode()
@@ -44,6 +45,11 @@ namespace MISA.AMIS.API.Controllers
             return Ok(serviceResult);
         }
 
+        /// <summary>
+        /// Phương thức xuất khẩu data ra file
+        /// </summary>
+        /// <returns></returns>
+        /// CreatedBy: DTSang(01/09)
         [HttpGet]
         [Route("Export")]
         public IActionResult ExportEmployees()

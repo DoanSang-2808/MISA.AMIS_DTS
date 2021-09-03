@@ -33,6 +33,9 @@
         <div class="main-list-bottom">
           <div style="width: 100%; height: 100%">
             <div class="scroll">
+              <div class="loading" :class="{isLoading: isLoading}">
+                <img src="../../../assets/loading.svg" alt="">
+              </div>
               <Table
                 :tableHeader="tableHeader"
                 :employees="employees"
@@ -86,7 +89,9 @@
                     <div class="main-option-text">
                       <input type="text" :value="pageSizeText" />
                     </div>
-                    <div class="main-option-icon" @click="choosePageSize"></div>
+                    <div class="main-option-icon" @click="choosePageSize">
+                      <div class="icon-mi"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -227,6 +232,7 @@ export default {
       employeeDelCode: "",
       isShow: false,
       isOpen: false,
+      isLoading: false,
       pageSizeText: "20 bản ghi trên 1 trang",
       pageSize: 20,
       pageIndex: 1,
@@ -241,10 +247,11 @@ export default {
   methods: {
     /**
      * Hàm gọi Api lấy dữ liệu cho bảng nhân viên
-     * Author: Dtsang(29/08)
+     * Author: DtSang(29/08)
      */
     loadTable() {
       let self = this;
+      self.isLoading= true,
       axios
         .get(
           `https://localhost:5001/api/v1/Employees/Pagging?keySearch=${this.keySearch}&pageIndex=${this.pageIndex}&pageSize=${this.pageSize}`
@@ -253,6 +260,7 @@ export default {
           self.employees = response.data.data.employees;
           self.totalRecord = response.data.data.totalRecord;
           self.totalPage = response.data.data.totalPage;
+          self.isLoading= false;
           console.log(response.data.data.employees);
         })
         .catch((error) => {
@@ -267,7 +275,7 @@ export default {
     },
     /**
      * Sự kiện đóng form chi tiết
-     * Author: Dtsang(31/08)
+     * Author: DtSang(31/08)
      */
     closeForm() {
       this.isShow = false;
@@ -281,7 +289,8 @@ export default {
       this.keySearch = "";
       this.pageSize = 20;
       this.pageIndex = 1;
-      (this.pageSizeText = "20 bản ghi trên 1 trang"), this.loadTable();
+      this.pageSizeText = "20 bản ghi trên 1 trang"; 
+      this.loadTable();
     },
     /**
      * Bắt sự kiện sửa nhân viên từ component Table
@@ -433,183 +442,206 @@ export default {
 <style scoped>
 @import url("../../../css/pagination.css");
 .over {
-  display: none;
-  background: #bbb;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
-  top: 0px;
-  left: 0;
-  opacity: 0.5;
-  z-index: 4;
-}
-.showDialog {
-  display: block !important;
-}
-.employee-list {
-  position: absolute;
-  top: 48px;
-  left: 178px;
-  width: calc(100% - 178px);
-  height: calc(100% - 48px);
-  padding: 0 20px 0 20px;
-  background-color: #eeeeee;
-}
-.header-list {
-  width: 100%;
-  height: 10%;
-  padding: 24px 0 24px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: Misa-Bold;
-}
-.main-list {
-  width: 100%;
-  height: 90%;
-  background-color: #fff;
-}
-.main-list-top {
-  width: 100%;
-  height: 10%;
-  padding: 16px 16px 10px 16px;
-}
-.main-list-top .wrapper {
-  /* margin-bottom: 10px; */
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  height: 70%;
-}
-.reload {
-  width: 24px;
-  height: 24px;
-  margin: 0 16px 0 16px;
-  background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -425px -201px;
-}
-.reload:hover {
-  width: 24px;
-  height: 24px;
-  margin: 0 16px 0 16px;
-  background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -1098px -89px;
-}
-.export {
-  width: 24px;
-  height: 24px;
-  background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -705px -202px;
-}
-.export:hover {
-  width: 24px;
-  height: 24px;
-  background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -1265px -90px;
-}
-.main-list-bottom {
-  width: 100%;
-  height: 90%;
-  padding: 0px 20px 0px 16px;
-}
-.scroll {
-  width: 100%;
-  height: 93%;
-  margin: 0;
-  overflow: auto;
-}
-.scroll::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-.scroll::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 0 #ffffff;
-  background: #fff;
-  border: 0 solid #000;
-}
-::-webkit-scrollbar-thumb {
-  -webkit-box-shadow: inset 0 0 0 #ffffff;
-  background: #bbb;
-  border-radius: 4px 4px 4px 4px;
-}
-.paging {
-  position: sticky;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-  height: 7%;
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: Misa-Regular;
-}
-.page-index {
-  width: 70%;
-  height: 100%;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-}
-.page-number {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.pagination {
-  margin: 0;
-}
-.page-index .option-record {
-  height: 70%;
-}
-.page-index .option-record .main-option {
-  width: 200px;
-  height: 100%;
-  margin: 0 16px;
-  display: flex;
-  align-items: center;
-  border: 1px solid #bbb;
-}
-.page-index .option-record .main-option .main-option-text {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-.page-index .option-record .main-option .main-option-text input {
-  font-size: 14px;
-  margin-left: 8px;
-  outline: none;
-  border: none;
-  width: 90%;
-  height: 100%;
-}
-.page-index .option-record .main-option .main-option-icon {
-  height: 100%;
-  width: 30px;
-  background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -363px -351px;
-}
-.page-index .option-record .main-option .main-option-icon:hover {
-  background-color: #bbb;
-}
-.page-index .option-record .item-option {
-  background-color: #fff;
-  position: absolute;
-  bottom: 45px;
-  width: 200px;
-  border: 1px solid #ccc;
-  margin: 0 16px;
-  font-size: 14px;
-  text-align: left;
-  display: none;
-}
-.borderGreen {
-  border-color: #35bf22 !important;
-}
-.page-index .option-record .item-option .item {
-  padding: 0 8px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-}
-.page-index .option-record .item-option .item:hover {
-  background-color: #ccc;
-}
+    display: none;
+    background: #bbb;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    opacity: 0.5;
+    z-index: 4;
+  }
+  .showDialog {
+    display: block !important;
+  }
+  .employee-list {
+    position: absolute;
+    top: 48px;
+    left: 178px;
+    width: calc(100% - 178px);
+    height: calc(100% - 48px);
+    padding: 0 20px 0 20px;
+    background-color: #eeeeee;
+  }
+  .header-list {
+    width: 100%;
+    height: 10%;
+    padding: 24px 0 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Misa-Bold;
+  }
+  .main-list {
+    width: 100%;
+    height: 90%;
+    background-color: #fff;
+  }
+  .main-list-top {
+    width: 100%;
+    height: 10%;
+    padding: 16px 16px 10px 16px;
+  }
+  .main-list-top .wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: 32px;
+  }
+  .reload {
+    width: 24px;
+    height: 24px;
+    margin: 0 16px 0 16px;
+    background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -425px -201px;
+  }
+  .reload:hover {
+    width: 24px;
+    height: 24px;
+    margin: 0 16px 0 16px;
+    background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -1098px -89px;
+  }
+  .export {
+    width: 24px;
+    height: 24px;
+    background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -705px -202px;
+  }
+  .export:hover {
+    width: 24px;
+    height: 24px;
+    background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -1265px -90px;
+  }
+  .main-list-bottom {
+    width: 100%;
+    height: 90%;
+    padding: 0px 20px 0px 16px;
+  }
+  .scroll {
+    position:relative;
+    width: 100%;
+    height: 93%;
+    margin: 0;
+    overflow: auto;
+    /* background-color: #ccc; */
+  }
+  .scroll::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 0 #ffffff;
+    background: #fff;
+    border: 0 solid #000;
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 0 #ffffff;
+    background: #bbb;
+    border-radius: 4px 4px 4px 4px;
+  }
+  .loading{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top : 0;
+    background-color: #ccc;
+    opacity: 0.5;
+    z-index: 5;
+    display: none;
+  }
+  .isLoading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .paging {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    height: 7%;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Misa-Regular;
+  }
+  .page-index {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+  .page-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .pagination {
+    margin: 0;
+  }
+  .page-index .option-record {
+    height: 70%;
+  }
+  .page-index .option-record .main-option {
+    width: 200px;
+    height: 100%;
+    margin: 0 16px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #bbb;
+  }
+  .page-index .option-record .main-option .main-option-text {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  .page-index .option-record .main-option .main-option-text input {
+    font-size: 14px;
+    margin-left: 8px;
+    outline: none;
+    border: none;
+    width: 90%;
+    height: 100%;
+  }
+  .page-index .option-record .main-option .main-option-icon {
+    height: 100%;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .page-index .option-record .main-option .main-option-icon .icon-mi{
+    width: 10px;
+    height: 10px;
+    background: url("../../../assets/img/Sprites.64af8f61.svg") no-repeat -371px -364px;
+  }
+  .page-index .option-record .main-option .main-option-icon:hover {
+    background-color: #bbb;
+  }
+  .page-index .option-record .item-option {
+    background-color: #fff;
+    position: absolute;
+    bottom: 45px;
+    width: 200px;
+    border: 1px solid #ccc;
+    margin: 0 16px;
+    font-size: 14px;
+    text-align: left;
+    display: none;
+  }
+  .borderGreen {
+    border-color: #35bf22 !important;
+  }
+  .page-index .option-record .item-option .item {
+    padding: 0 8px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+  }
+  .page-index .option-record .item-option .item:hover {
+    background-color: #ccc;
+  }
 </style>

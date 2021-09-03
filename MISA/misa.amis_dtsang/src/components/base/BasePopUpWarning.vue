@@ -1,4 +1,5 @@
 <template>
+<!-- <div style="width: 100%; height: 100%;display:flex; justify-content: center; align-items: center"> -->
   <div class="modal-confirm" :class="{'show-popup': this.isShow}">
     <div class="modal-content">
       <div class="content-confirm">
@@ -14,6 +15,7 @@
       </div>
     </div>
   </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -44,7 +46,7 @@ export default {
     },
     /**
      * Sự kiện đóng popup
-     * Author: DTsang(31/08)
+     * Author: DTSang(31/08)
      */
     closePopupWarning()
     {
@@ -59,10 +61,10 @@ export default {
 .modal-confirm {
   display: none;
   position: fixed;
-  left:35%;
+   left:35%;
   top: 35%;
-  width:30%;
-  height: 30%;
+  width:546px;
+  height: 250px;
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);

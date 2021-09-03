@@ -22,6 +22,12 @@ namespace MISA.AMIS.Core.Services
             this._employeeRepository = employeeRepository;
         }
 
+        /// <summary>
+        /// Xử lí nghiệp vụ cho phương thức xuất khẩu file
+        /// </summary>
+        /// <param name="fordel"></param>
+        /// <returns>Kết quả xử lí nghiệp vụ</returns>
+        /// CreatedBy: DTSang(02/09)
         public ServiceResult ExportEmployees(string fordel)
         {
             try
@@ -137,6 +143,7 @@ namespace MISA.AMIS.Core.Services
         /// <param name="pageIndex"></param>
         /// <param name="pageSize"></param>
         /// <returns>Kết quả xử lí nghiệp vụ</returns>
+        /// CreatedBy: DTSang(01/09)
         public ServiceResult GetEmployeePaging(string keySearch, int pageIndex, int pageSize)
         {
             try
@@ -171,6 +178,7 @@ namespace MISA.AMIS.Core.Services
         /// Xử lí nghiệp vụ cho phương thức lấy mã nhân viên mới
         /// </summary>
         /// <returns>Kết quả xử lí nghiệp vụ</returns>
+        /// CreatedBy: DTSang(01/09)
         public ServiceResult GetNewEmployeeCode()
         {
             try

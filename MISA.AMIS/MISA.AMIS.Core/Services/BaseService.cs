@@ -102,7 +102,7 @@ namespace MISA.AMIS.Core.Services
         /// Xử lí nghiệp vụ cho phương thức lấy toàn bộ bản ghi
         /// </summary>
         /// <returns>Kết quả xử lí nghiệp vụ</returns>
-        /// CreatedBy: DTsang(28/08)
+        /// CreatedBy: DTSang(28/08)
         public ServiceResult GetAll()
         {
             try
@@ -138,7 +138,7 @@ namespace MISA.AMIS.Core.Services
         /// </summary>
         /// <param name="entityId"></param>
         /// <returns>Kết quả xử lí nghiệp vụ</returns>
-        /// CreatedBy: DTsang(28/08)
+        /// CreatedBy: DTSang(28/08)
         public ServiceResult GetById(Guid entityId)
         {
             try
@@ -215,7 +215,7 @@ namespace MISA.AMIS.Core.Services
         /// </summary>
         /// <param name="entity"></param>
         /// <returns>thoong tin sau khi validate</returns>
-        /// CreatedBy: DTsang(28/08)
+        /// CreatedBy: DTSang(28/08)
         private ServiceResult Validate(T entity, Guid id)
         {
             try

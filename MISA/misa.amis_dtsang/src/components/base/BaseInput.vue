@@ -56,7 +56,7 @@ export default {
     display: flex;
 }
 input{
-    width: 100%;
+    width: 90%;
     outline: none;
     border: none;
 }
@@ -68,16 +68,16 @@ input:focus {
     font-family: Misa-Italic;
 }
 .icon30{
-    width: 30px;
-    height: 30px;
+    width: 10%;
+    height: 100%;
     display: flex;
 }
 .icon-search{
-    background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -87px -26px;
+    background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -85px -28px;
 }
 .icon-cancel{
     display: none;
-    background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -74px -303px;
+    background: url("../../assets/img/Sprites.64af8f61.svg") no-repeat -74px -305px;
 }
 .showCancel{
     display: block !important;

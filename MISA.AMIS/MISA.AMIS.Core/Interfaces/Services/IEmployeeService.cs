@@ -14,12 +14,14 @@ namespace MISA.AMIS.Core.Interfaces.Services
         /// Xử lí nghiệp vụ cho phương thức lấy mã nhân viên mới
         /// </summary>
         /// <returns>Kết quả xử lí nghiệp vụ</returns>
+        /// CreatedBy: DTSang(28/08)
         public ServiceResult GetNewEmployeeCode();
 
         /// <summary>
         /// Xử lí nghiệp vụ cho phương thức phân trang nhân viên
         /// </summary>
         /// <returns>Kết quả xử lí nghiệp vụ</returns>
+        /// CreatedBy: DTSang(28/08)
         public ServiceResult GetEmployeePaging(string keySearch, int pageIndex, int pageSize);
 
         /// <summary>
@@ -27,6 +29,7 @@ namespace MISA.AMIS.Core.Interfaces.Services
         /// </summary>
         /// <param name="folder"></param>
         /// <returns>Kết quả xử lí nghiệp vụ</returns>
+        /// CreatedBy: DTSang(28/08)
         public ServiceResult ExportEmployees(string folder);
         #endregion
 
@@ -35,6 +38,7 @@ namespace MISA.AMIS.Core.Interfaces.Services
         /// </summary>
         /// <param name="gender"></param>
         /// <returns>Trả về kết quả sử lí nghiệp vụ</returns>
+        /// CreatedBy: DTSang(28/08)
         public string GenderName(int gender);
     }
 

@@ -10,6 +10,7 @@ import { ValidationProvider, ValidationObserver, extend } from 'vee-validate';
 import * as rules from 'vee-validate/dist/rules';
 import { messages } from 'vee-validate/dist/locale/vi.json';
 import Paginate from 'vuejs-paginate'
+import router from './components/route/index.js' 
 
 
 Object.keys(rules).forEach(rule => {
@@ -32,5 +33,6 @@ Vue.component('paginate', Paginate)
 Vue.config.productionTip = false
 
 new Vue({
+  router,
   render: h => h(App),
 }).$mount('#app')
